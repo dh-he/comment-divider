@@ -5,14 +5,14 @@ import { mainHeaderCommand, subHeaderCommand, solidLineCommand } from './command
 
 export function activate(context: ExtensionContext) {
   context.subscriptions.push(
-    commands.registerCommand(`${EXT_ID}.makeMainHeader`, mainHeaderCommand)
+    commands.registerCommand(`${EXT_ID}.makeMainHeader`, () => mainHeaderCommand(context))
   );
 
   context.subscriptions.push(
-    commands.registerCommand(`${EXT_ID}.makeSubHeader`, subHeaderCommand)
+    commands.registerCommand(`${EXT_ID}.makeSubHeader`, () => subHeaderCommand(context))
   );
 
   context.subscriptions.push(
-    commands.registerCommand(`${EXT_ID}.insertSolidLine`, solidLineCommand)
+    commands.registerCommand(`${EXT_ID}.insertSolidLine`, () => solidLineCommand(context))
   );
 }

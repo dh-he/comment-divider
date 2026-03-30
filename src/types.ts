@@ -1,6 +1,11 @@
-import { TextLine } from 'vscode';
+import { TextLine, ExtensionContext } from 'vscode';
 
-export type Action = (type: PresetId, line: TextLine, lang: string) => void;
+export type Action = (
+  type: PresetId,
+  line: TextLine,
+  lang: string,
+  context: ExtensionContext
+) => Promise<void> | void;
 
 export type PresetId = 'subheader' | 'mainHeader' | 'line';
 

@@ -1,4 +1,4 @@
-import { window, TextEditor } from 'vscode';
+import { window, TextEditor, ExtensionContext } from 'vscode';
 
 import { handleError, checkMultiLineSelection } from './errors';
 import { insertDividerAction } from './actions';
@@ -19,13 +19,13 @@ const getEditorState = (editor: TextEditor) => {
   };
 };
 
-const generateCommand = (type: PresetId) => () => {
+const generateCommand = (type: PresetId) => (context: ExtensionContext) => {
   try {
     const editor = window.activeTextEditor;
     if (!editor) return;
 
     const { lang, line } = getEditorState(editor);
-    insertDividerAction(type, line, lang);
+    insertDividerAction(type, line, lang, context);
   } catch (e) {
     handleError(e);
   }
